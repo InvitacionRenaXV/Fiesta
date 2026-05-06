@@ -1,29 +1,7 @@
 export default function LocationIcon(props) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      {/* Mapa con pliegues — 3 columnas */}
-      <polygon points="3,4 8,2 16,4 21,2 21,20 16,22 8,20 3,22" />
-      {/* Pliegues verticales */}
-      <line x1="8" y1="2" x2="8" y2="20" />
-      <line x1="16" y1="4" x2="16" y2="22" />
-      {/* Ruta curva horizontal */}
-      <path d="M4 10 C6 8, 10 12, 13 10" strokeWidth="1.2" />
-      {/* Ruta corta diagonal */}
-      <path d="M13 10 C15 8.5, 17 9, 19 8" strokeWidth="1.2" />
-      {/* Carretera vertical */}
-      <line x1="10" y1="14" x2="10" y2="19" strokeWidth="1.2" />
-      {/* Pin de ubicación */}
-      <circle cx="13" cy="10" r="1.3" fill="currentColor" fillOpacity="0.4" />
-      <circle cx="13" cy="10" r="0.5" fill="currentColor" stroke="none" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 117.55" fill="currentColor" {...props}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M78.81,82.78c-4.35,4.77-9.42,9.05-15.12,12.51c-0.7,0.51-1.65,0.58-2.43,0.08 c-8.41-5.35-15.48-11.78-21.03-18.76c-7.66-9.61-12.49-20.27-14.14-30.53c-1.68-10.41-0.11-20.42,5.07-28.56 c2.04-3.22,4.65-6.15,7.83-8.68C46.3,3.01,54.65-0.06,62.96,0c8.01,0.06,15.91,3.05,22.74,9.28c2.4,2.18,4.42,4.68,6.07,7.39 c5.57,9.17,6.77,20.87,4.32,32.73c-2.41,11.71-8.41,23.62-17.28,33.35V82.78L78.81,82.78L78.81,82.78z M25.32,74.54 c1.98,0,3.59,1.61,3.59,3.59c0,1.98-1.61,3.59-3.59,3.59h-6.74l-8.88,28.67h103.22l-9.64-28.67h-5.57c-1.98,0-3.59-1.61-3.59-3.59 c0-1.98,1.61-3.59,3.59-3.59h10.7l14.46,43.01H0l13.32-43.01H25.32L25.32,74.54z M61.38,18.51c9.88,0,17.88,8.01,17.88,17.87 c0,9.88-8.01,17.88-17.88,17.88c-9.88,0-17.87-8-17.87-17.88C43.49,26.51,51.5,18.51,61.38,18.51L61.38,18.51L61.38,18.51z"/>
     </svg>
   )
 }

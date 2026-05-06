@@ -1,6 +1,7 @@
 import styles from './EventDetails.module.css'
 import CalendarIcon from '../assets/CalendarIcon'
 import LocationIcon from '../assets/LocationIcon'
+import RSVPIcon from '../assets/RSVPIcon'
 import { ShootingStarDivider } from './Divider'
 
 const SPARKS = [
@@ -61,6 +62,9 @@ export default function EventDetails() {
         </div>
 
         <div className={styles.confirm}>
+          <span className={styles.icon} aria-hidden="true">
+            <RSVPIcon />
+          </span>
           <h3 className={styles.cardTitle}>¿Venís?</h3>
           <p className={styles.confirmText}>
             Prepárate para disfrutar de una noche inolvidable y llena de sorpresas.<br />

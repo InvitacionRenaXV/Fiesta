@@ -1,0 +1,183 @@
+.section {
+  background: linear-gradient(160deg, #1a1a1a 0%, #222 50%, #1a1a1a 100%);
+  border-top: 1px solid var(--surface);
+  padding: 5rem 1.5rem;
+  text-align: center;
+}
+
+.inner {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--silver-dark);
+}
+
+.heading {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3rem, 10vw, 5rem);
+  background: linear-gradient(135deg, #b0b0b0 0%, #fff 40%, #d0d0d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.infoRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  background: var(--dark-mid);
+  border: 1px solid var(--surface);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  text-align: left;
+}
+
+.infoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--silver-mid);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  filter: drop-shadow(0 0 5px rgba(200,210,255,0.5));
+}
+
+.infoIcon svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.infoText {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.infoText strong {
+  color: var(--silver-mid);
+  font-weight: 500;
+}
+
+.contactLabel {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--silver-dark);
+  margin: 0;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--dark-mid);
+  border: 1px solid var(--surface);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.card:hover {
+  border-color: var(--silver-dark);
+  background: var(--surface);
+}
+
+.personIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--silver-mid);
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 5px rgba(200,210,255,0.5));
+}
+
+.personIcon svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  gap: 0.15rem;
+}
+
+.cardName {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--silver-mid);
+  letter-spacing: 0.05em;
+}
+
+.cardRole {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+.waIcon {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #4fc36a;
+  flex-shrink: 0;
+}
+
+.waIcon svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.phone {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-mid);
+}
+
+.plazaLink {
+  color: var(--silver-mid);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+.plazaLink:hover {
+  color: var(--silver-light);
+}
