@@ -54,7 +54,7 @@ export default function MusicPlayer() {
           className={`${styles.overlay} ${phase === 'opening' ? styles.overlayFading : ''}`}
           onClick={handleOpen}
         >
-          <div className={styles.envelope}>
+          <div className={`${styles.envelope} ${phase === 'opening' ? styles.envelopeZoom : ''}`}>
             <div className={`${styles.flap} ${phase === 'opening' ? styles.flapOpen : ''}`} />
             <div className={styles.envBody}>
               <div className={styles.envLeft} />
@@ -64,6 +64,13 @@ export default function MusicPlayer() {
             <div className={styles.seal}>
               <HeartIcon />
             </div>
+            {phase === 'opening' && (
+              <div className={styles.burst}>
+                {[...Array(12)].map((_, i) => (
+                  <span key={i} className={styles.particle} style={{ '--i': i }} />
+                ))}
+              </div>
+            )}
           </div>
           <p className={styles.enterText}>¡Abrime!</p>
         </div>
