@@ -38,7 +38,7 @@ export default function Playlist() {
         </p>
 
         <a
-          href="https://forms.gle/8EmGANbgxQY1K8568"
+          href="https://forms.gle/FGjWZgrgY34vfrAa9"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.btn}

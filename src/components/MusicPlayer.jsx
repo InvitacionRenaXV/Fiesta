@@ -1,10 +1,18 @@
 import { useState, useEffect, useRef } from 'react'
 import styles from './MusicPlayer.module.css'
 
-function NoteIcon() {
+function PlayIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M21 3L9 6v13a3 3 0 1 0 2 2.83V10.17l10-2.5V16a3 3 0 1 0 2 2.83V3h-2z"/>
+      <path d="M8 5v14l11-7z"/>
+    </svg>
+  )
+}
+
+function PauseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
     </svg>
   )
 }
@@ -20,14 +28,27 @@ function HeartIcon() {
 export default function MusicPlayer() {
   const [phase, setPhase] = useState('closed')
   const [playing, setPlaying] = useState(false)
+  const [progress, setProgress] = useState(0)
   const audioRef = useRef(null)
 
   useEffect(() => {
-    audioRef.current = new Audio('/invitacion-rena/music.mp3')
-    audioRef.current.loop = true
-    audioRef.current.volume = 0.4
-    return () => audioRef.current.pause()
+    const audio = new Audio('/invitacion-rena/music.mp3')
+    audio.loop = true
+    audio.volume = 0.4
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) setProgress(audio.currentTime / audio.duration)
+    })
+    audioRef.current = audio
+    return () => audio.pause()
   }, [])
+
+  const seek = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const ratio = (e.clientX - rect.left) / rect.width
+    const clamped = Math.max(0, Math.min(1, ratio))
+    audioRef.current.currentTime = clamped * audioRef.current.duration
+    setProgress(clamped)
+  }
 
   const handleOpen = () => {
     if (phase !== 'closed') return
@@ -75,13 +96,25 @@ export default function MusicPlayer() {
           <p className={styles.enterText}>¡Abrime!</p>
         </div>
       )}
-      <button
-        className={`${styles.btn} ${playing ? styles.playing : ''}`}
-        onClick={toggle}
-        aria-label={playing ? 'Pausar música' : 'Reproducir música'}
-      >
-        <NoteIcon />
-      </button>
+      <div className={`${styles.player} ${phase === 'open' ? styles.playerVisible : ''}`}>
+        <div className={styles.notesArc} aria-hidden="true">
+          {['♩','♪','♫','♪'].map((n, i) => (
+            <span key={i} className={styles.floatNote} style={{ '--ni': i }}>{n}</span>
+          ))}
+        </div>
+        <button
+          className={`${styles.btn} ${playing ? styles.playing : ''}`}
+          onClick={toggle}
+          aria-label={playing ? 'Pausar música' : 'Reproducir música'}
+        >
+          {playing ? <PauseIcon /> : <PlayIcon />}
+        </button>
+        {phase === 'open' && (
+          <div className={styles.progressBar} onClick={seek} role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
+            <div className={styles.progressFill} style={{ width: `${progress * 100}%` }} />
+          </div>
+        )}
+      </div>
     </>
   )
 }

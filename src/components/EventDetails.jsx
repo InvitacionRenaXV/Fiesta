@@ -15,7 +15,7 @@ const SPARKS = [
   { top: '15%', left: '10%', delay: '0.5s',  size: '3px' },
 ]
 
-export default function EventDetails() {
+export default function EventDetails({ isTeens }) {
   return (
     <section id="evento" className={styles.section}>
       <div className={styles.sparksLayer} aria-hidden="true">
@@ -72,7 +72,7 @@ export default function EventDetails() {
 
           </p>
           <a
-            href="https://forms.gle/jxSZJxhgxxJMokUf8"
+            href={isTeens ? "https://forms.gle/3sSgUS3pWPM83kgD7" : "https://forms.gle/YgsD2SUcfGDEaCyF6"}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.rsvpBtn}

@@ -16,7 +16,7 @@ export default function App() {
       <MusicPlayer />
       <Hero />
       <Countdown />
-      <EventDetails />
+      <EventDetails isTeens={isTeens}/>
       <DressCode />
       <Gift />
       <Playlist />

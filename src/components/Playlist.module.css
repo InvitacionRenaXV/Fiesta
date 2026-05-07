@@ -112,18 +112,30 @@
   display: inline-block;
   padding: 0.9rem 2.8rem;
   border: 1px solid var(--silver-dark);
-  color: var(--silver-light);
+  color: var(--silver-mid);
   font-family: 'Montserrat', sans-serif;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.04);
-  transition: background 0.3s, color 0.3s;
+  background: transparent;
+  border-radius: 999px;
+  transition: color 0.3s;
+  animation: btnGlow 2.5s ease-in-out infinite;
 }
 
 .btn:hover {
-  background: var(--silver-dark);
-  color: var(--black);
+  color: var(--silver-light);
+}
+
+@keyframes btnGlow {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(196,196,196,0.2), 0 0 12px rgba(196,196,196,0.08);
+    border-color: var(--silver-dark);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(255,255,255,0.5), 0 0 28px rgba(210,220,255,0.25);
+    border-color: var(--silver-light);
+  }
 }

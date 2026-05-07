@@ -158,11 +158,68 @@
   color: var(--silver-dark);
 }
 
-.btn {
+.player {
   position: fixed;
   bottom: 3rem;
   right: 2.5rem;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.notesArc {
+  position: absolute;
+  bottom: 0.5rem;
+  right: calc(2.5rem + 2px);
+  width: calc(7rem - 2.5rem - 2px);
+  height: 2.8rem;
+  pointer-events: none;
+}
+
+.floatNote {
+  position: absolute;
+  font-size: 0.69rem;
+  color: var(--silver-dark);
+  opacity: 0;
+  animation: noteFloat 3s ease-in-out infinite;
+  animation-delay: calc(var(--ni) * 0.7s);
+  left: calc(var(--ni) * 33%);
+  bottom: calc(var(--ni) * 0.25rem);
+}
+
+@keyframes noteFloat {
+  0%   { opacity: 0; transform: translateY(0) scale(0.7); }
+  20%  { opacity: 0.6; }
+  60%  { opacity: 0.4; transform: translateY(-0.9rem) scale(1); }
+  100% { opacity: 0; transform: translateY(-1.5rem) scale(0.6); }
+}
+
+.progressBar {
+  width: 7rem;
+  height: 2px;
+  background: var(--surface-mid);
+  border-radius: 99px;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease, width 0.3s ease;
+}
+
+.playerVisible .progressBar {
+  opacity: 1;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--silver-mid);
+  border-radius: 99px;
+  transition: width 0.3s linear;
+  box-shadow: 0 0 6px rgba(196,196,196,0.5);
+}
+
+.btn {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
