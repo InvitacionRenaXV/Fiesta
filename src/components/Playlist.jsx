@@ -38,7 +38,7 @@ export default function Playlist({ isTeens }) {
         </p>
 
         <a
-          href="https://forms.gle/FGjWZgrgY34vfrAa9"
+          href={isTeens? 'https://forms.gle/2k5P4Et92RMsNB8B7':"https://forms.gle/FGjWZgrgY34vfrAa9"}
           rel="noopener noreferrer"
           className={styles.btn}
         >
