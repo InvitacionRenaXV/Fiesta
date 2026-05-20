@@ -85,7 +85,7 @@ export default function ModalPlaylist({ isTeens, isModalOpen, setIsModalOpen }) 
 
                 <form onSubmit={handleSubmit} className={styles.modalForm}>
                   <div>
-                    <input
+                    <textarea
                       type="text"
                       name="nombre"
                       value={formData.nombre}
@@ -96,7 +96,7 @@ export default function ModalPlaylist({ isTeens, isModalOpen, setIsModalOpen }) 
                     />
                   </div>
                   <div>
-                    <input
+                    <textarea
                       type="text"
                       name="cancion"
                       value={formData.cancion}

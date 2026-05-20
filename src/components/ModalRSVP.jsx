@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './ModalRSVP.module.css';
 
 export default function ModalRSVP({ isTeens, isModalOpen, setIsModalOpen }) {
@@ -14,6 +14,7 @@ export default function ModalRSVP({ isTeens, isModalOpen, setIsModalOpen }) {
     telefonoAdulto: '',
     mensaje: '',
   });
+  const previousBodyOverflow = useRef('');
 
   const isControlled = typeof isModalOpen === 'boolean' && typeof setIsModalOpen === 'function';
   const isOpen = isControlled ? isModalOpen : localOpen;
@@ -21,6 +22,19 @@ export default function ModalRSVP({ isTeens, isModalOpen, setIsModalOpen }) {
     if (isControlled) setIsModalOpen(v);
     else setLocalOpen(v);
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      previousBodyOverflow.current = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = previousBodyOverflow.current || '';
+    }
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow.current || '';
+    };
+  }, [isOpen]);
 
   const handleChange = (e) => {
     setFormData({
@@ -107,7 +121,7 @@ export default function ModalRSVP({ isTeens, isModalOpen, setIsModalOpen }) {
 
                 <form onSubmit={handleSubmit} className={styles.modalForm}>
                   <div>
-                    <input
+                    <textarea
                       type="text"
                       name="nombre"
                       value={formData.nombre}
@@ -230,24 +244,24 @@ export default function ModalRSVP({ isTeens, isModalOpen, setIsModalOpen }) {
                   </div>
                   {formData.restricciones === 'Otro' && (
                     <div>
-                      <input
-                        type="text"
+                      <textarea
                         name="restriccionesDetalle"
                         value={formData.restriccionesDetalle}
                         onChange={handleChange}
                         placeholder="Especificá (ej. 'No come pescado')"
                         className={styles.modalInput}
+                        rows={2}
                       />
                     </div>
                   )}
                   <div>
-                    <input
-                      type="text"
+                    <textarea
                       name="mensaje"
                       value={formData.mensaje}
                       onChange={handleChange}
                       placeholder="Mensaje especial"
                       className={styles.modalInput}
+                      rows={2}
                     />
                   </div>
                   <button type="submit" className={styles.btn} style={{ marginTop: '0.5rem' }}>

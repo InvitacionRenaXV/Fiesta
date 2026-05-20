@@ -24,6 +24,8 @@
   gap: 1.5rem;
   max-width: 460px;
   width: 90%;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
   position: relative;
   box-sizing: border-box;
@@ -31,6 +33,12 @@
   animation: slideIn 0.3s ease-out;
 }
 
+@media (max-width: 520px) {
+  .confirm {
+    width: 95%;
+    padding: 2rem 1.5rem;
+  }
+}
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -103,6 +111,8 @@
   box-sizing: border-box;
   outline: none;
   transition: border-color 0.3s;
+  resize: vertical;
+  line-height: 1.5;
 }
 
 .modalInput:focus {
@@ -152,7 +162,7 @@
   color: var(--silver-light);
 }
 
-.radioOption input[type="radio"] {
+.radioOption input[type='radio'] {
   margin-right: 10px;
   width: 16px;
   height: 16px;
@@ -166,18 +176,20 @@
   position: relative;
 }
 
-.radioOption input[type="radio"]:hover {
+.radioOption input[type='radio']:hover {
   border-color: #888;
   background-color: #777;
 }
 
-.radioOption input[type="radio"]:checked {
+.radioOption input[type='radio']:checked {
   background-color: white;
   border-color: white;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(210, 220, 255, 0.5);
+  box-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(210, 220, 255, 0.5);
 }
 
-.radioOption input[type="radio"]:checked::after {
+.radioOption input[type='radio']:checked::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -206,20 +218,34 @@
 }
 
 .btn {
-  display: inline-block;
-  padding: 0.9rem 2.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2.2rem;
   border: 1px solid var(--silver-dark);
   color: var(--silver-mid);
   font-family: 'Montserrat', sans-serif;
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   text-decoration: none;
   background: transparent;
   border-radius: 999px;
   transition: color 0.3s;
   animation: btnGlow 2.5s ease-in-out infinite;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 440px) {
+  .btn {
+    padding: 0.9rem 1.2rem;
+    letter-spacing: 0.15em;
+  }
 }
 
 .btn:hover {
@@ -227,12 +253,17 @@
 }
 
 @keyframes btnGlow {
-  0%, 100% {
-    box-shadow: 0 0 6px rgba(196,196,196,0.2), 0 0 12px rgba(196,196,196,0.08);
+  0%,
+  100% {
+    box-shadow:
+      0 0 6px rgba(196, 196, 196, 0.2),
+      0 0 12px rgba(196, 196, 196, 0.08);
     border-color: var(--silver-dark);
   }
   50% {
-    box-shadow: 0 0 14px rgba(255,255,255,0.5), 0 0 28px rgba(210,220,255,0.25);
+    box-shadow:
+      0 0 14px rgba(255, 255, 255, 0.5),
+      0 0 28px rgba(210, 220, 255, 0.25);
     border-color: var(--silver-light);
   }
 }
