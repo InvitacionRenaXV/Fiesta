@@ -1,3 +1,4 @@
+import ModalRSVP from './ModalRSVP'
 import styles from './Playlist.module.css'
 
 const NOTES = [

@@ -1,0 +1,238 @@
+/* --- OVERLAY DE LA VENTANA (FONDO BLUR) --- */
+.modalOverlay {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- CUERPO DEL MODAL (ESTILO .confirm DE RENA) --- */
+.confirm {
+  background: var(--dark-mid);
+  border: 1px solid var(--surface-mid);
+  padding: 3.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 460px;
+  width: 90%;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 12px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- BOTÓN DE CIERRE (X) --- */
+.modalClose {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--silver-dark);
+  transition: color 0.3s ease;
+  font-family: sans-serif;
+  line-height: 1;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalClose:hover {
+  color: var(--silver-light);
+}
+
+/* --- TEXTOS DEL MODAL --- */
+.heading {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  color: var(--silver-light);
+  margin: 0;
+  text-align: center;
+}
+
+.cardSub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  font-style: italic;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+}
+
+/* --- ESTRUCTURA DEL FORMULARIO --- */
+.modalForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* --- CAMPOS DE ENTRADA (INPUTS) --- */
+.modalInput {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--surface-mid);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.modalInput:focus {
+  border-color: var(--silver-dark);
+  box-shadow: 0 0 8px rgba(196, 196, 196, 0.2);
+}
+
+.modalInput::placeholder {
+  color: var(--text-light);
+}
+
+/* --- SECCIÓN SELECCIÓN ASISTENCIA --- */
+.radioSection {
+  text-align: left;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-mid);
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 5px;
+}
+
+.radioLabel {
+  color: var(--silver-mid);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 300;
+  transition: color 0.2s;
+}
+
+.radioOption:hover {
+  color: var(--silver-light);
+}
+
+.radioOption input[type="radio"] {
+  margin-right: 10px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #666;
+  border: 2px solid #666;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.radioOption input[type="radio"]:hover {
+  border-color: #888;
+  background-color: #777;
+}
+
+.radioOption input[type="radio"]:checked {
+  background-color: white;
+  border-color: white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(210, 220, 255, 0.5);
+}
+
+.radioOption input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background-color: #333;
+  border-radius: 50%;
+}
+
+/* --- MENSAJE DE ÉXITO ENVIADO --- */
+.inner {
+  width: 100%;
+  text-align: center;
+}
+
+.confirmText {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: var(--silver-light);
+  font-style: italic;
+  line-height: 1.6;
+  padding: 2rem 0;
+  margin: 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.9rem 2.8rem;
+  border: 1px solid var(--silver-dark);
+  color: var(--silver-mid);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: transparent;
+  border-radius: 999px;
+  transition: color 0.3s;
+  animation: btnGlow 2.5s ease-in-out infinite;
+}
+
+.btn:hover {
+  color: var(--silver-light);
+}
+
+@keyframes btnGlow {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(196,196,196,0.2), 0 0 12px rgba(196,196,196,0.08);
+    border-color: var(--silver-dark);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(255,255,255,0.5), 0 0 28px rgba(210,220,255,0.25);
+    border-color: var(--silver-light);
+  }
+}

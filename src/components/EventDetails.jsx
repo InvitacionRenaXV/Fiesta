@@ -1,27 +1,36 @@
-import styles from './EventDetails.module.css'
-import CalendarIcon from '../assets/CalendarIcon'
-import LocationIcon from '../assets/LocationIcon'
-import RSVPIcon from '../assets/RSVPIcon'
-import { ShootingStarDivider } from './Divider'
+import styles from './EventDetails.module.css';
+import CalendarIcon from '../assets/CalendarIcon';
+import LocationIcon from '../assets/LocationIcon';
+import RSVPIcon from '../assets/RSVPIcon';
+import ModalRSVP from './ModalRSVP';
+import { ShootingStarDivider } from './Divider';
 
 const SPARKS = [
-  { top: '10%', left: '4%',  delay: '0s',   size: '5px' },
-  { top: '20%', left: '93%', delay: '0.6s',  size: '4px' },
-  { top: '55%', left: '2%',  delay: '1.1s',  size: '3px' },
-  { top: '70%', left: '96%', delay: '0.3s',  size: '5px' },
-  { top: '30%', left: '88%', delay: '1.4s',  size: '4px' },
-  { top: '80%', left: '7%',  delay: '0.8s',  size: '3px' },
-  { top: '45%', left: '91%', delay: '1.9s',  size: '4px' },
-  { top: '15%', left: '10%', delay: '0.5s',  size: '3px' },
-]
+  { top: '10%', left: '4%', delay: '0s', size: '5px' },
+  { top: '20%', left: '93%', delay: '0.6s', size: '4px' },
+  { top: '55%', left: '2%', delay: '1.1s', size: '3px' },
+  { top: '70%', left: '96%', delay: '0.3s', size: '5px' },
+  { top: '30%', left: '88%', delay: '1.4s', size: '4px' },
+  { top: '80%', left: '7%', delay: '0.8s', size: '3px' },
+  { top: '45%', left: '91%', delay: '1.9s', size: '4px' },
+  { top: '15%', left: '10%', delay: '0.5s', size: '3px' },
+];
 
-export default function EventDetails({ isTeens }) {
+export default function EventDetails({ isTeens, isModalOpen, setIsModalOpen }) {
   return (
     <section id="evento" className={styles.section}>
       <div className={styles.sparksLayer} aria-hidden="true">
         {SPARKS.map((s, i) => (
-          <span key={i} className={styles.spark}
-            style={{ top: s.top, left: s.left, animationDelay: s.delay, width: s.size, height: s.size }}
+          <span
+            key={i}
+            className={styles.spark}
+            style={{
+              top: s.top,
+              left: s.left,
+              animationDelay: s.delay,
+              width: s.size,
+              height: s.size,
+            }}
           />
         ))}
       </div>
@@ -67,19 +76,15 @@ export default function EventDetails({ isTeens }) {
           </span>
           <h3 className={styles.cardTitle}>¿Venís?</h3>
           <p className={styles.confirmText}>
-            Prepárate para disfrutar de una noche inolvidable y llena de sorpresas.<br />
-            Es importante para nosotros que confirmes tu asistencia antes de el <strong>20 de agosto</strong>, para poder organizar todo de la mejor manera y asegurarnos de que tengas una experiencia increíble
-
+            Prepárate para disfrutar de una noche inolvidable y llena de sorpresas.
+            <br />
+            Es importante para nosotros que confirmes tu asistencia antes de el{' '}
+            <strong>20 de agosto</strong>, para poder organizar todo de la mejor manera y
+            asegurarnos de que tengas una experiencia increíble
           </p>
-          <a
-            href={isTeens ? "https://forms.gle/3sSgUS3pWPM83kgD7" : "https://forms.gle/YgsD2SUcfGDEaCyF6"}
-            rel="noopener noreferrer"
-            className={styles.rsvpBtn}
-          >
-            Confirmar asistencia
-          </a>
+          <ModalRSVP isTeens={isTeens} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
         </div>
       </div>
     </section>
-  )
+  );
 }
