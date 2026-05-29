@@ -1,8 +1,6 @@
 .section {
-  background: linear-gradient(135deg, #1a1a1a 0%, #282828 100%);
-  border-top: 1px solid var(--surface);
-  border-bottom: 1px solid var(--surface);
-  padding: 4rem 1.5rem;
+  background: transparent;
+  padding: 5rem 1.5rem;
   text-align: center;
 }
 
@@ -42,12 +40,13 @@
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2.8rem, 8vw, 4.5rem);
   font-weight: 300;
-  background: linear-gradient(135deg, #b0b0b0 0%, #fff 50%, #d0d0d0 100%);
+  background: linear-gradient(180deg, #fff 0%, #b0b0b0 50%, #888 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1;
   letter-spacing: -0.02em;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
 }
 
 .label {
@@ -85,11 +84,19 @@
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

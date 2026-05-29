@@ -1,32 +1,9 @@
 .section {
-  background-color: var(--dark);
+  background: transparent;
   padding: 5rem 1.5rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-}
-
-.sparksLayer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 22%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.spark {
-  position: absolute;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 6px 2px rgba(255,255,255,0.9), 0 0 14px 4px rgba(200,210,255,0.4);
-  animation: sparkTwinkle 2.5s ease-in-out infinite;
-}
-
-@keyframes sparkTwinkle {
-  0%, 100% { opacity: 0; transform: scale(0.3); }
-  50%       { opacity: 1; transform: scale(1); }
 }
 
 .inner {
@@ -72,19 +49,27 @@
   flex: 1;
   height: 1px;
   background: var(--surface-mid);
-    animation: ornamentPulse 2.5s ease-in-out infinite;
+  animation: ornamentPulse 2.5s ease-in-out infinite;
 }
 
 .ornament {
   color: var(--silver-light);
   font-size: 0.9rem;
-  filter: drop-shadow(0 0 4px rgba(255,255,255,0.8)) drop-shadow(0 0 10px rgba(200,220,255,0.5));
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8))
+    drop-shadow(0 0 10px rgba(200, 220, 255, 0.5));
   animation: ornamentPulse 2.5s ease-in-out infinite;
 }
 
 @keyframes ornamentPulse {
-  0%, 100% { filter: drop-shadow(0 0 3px rgba(255,255,255,0.5)) drop-shadow(0 0 8px rgba(200,220,255,0.3)); }
-  50%       { filter: drop-shadow(0 0 7px rgba(255,255,255,1))   drop-shadow(0 0 18px rgba(210,230,255,0.7)); }
+  0%,
+  100% {
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5))
+      drop-shadow(0 0 8px rgba(200, 220, 255, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 7px rgba(255, 255, 255, 1))
+      drop-shadow(0 0 18px rgba(210, 230, 255, 0.7));
+  }
 }
 
 .cards {
@@ -103,7 +88,9 @@
   align-items: center;
   gap: 0.6rem;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-  transition: box-shadow 0.3s, border-color 0.3s;
+  transition:
+    box-shadow 0.3s,
+    border-color 0.3s;
 }
 
 .card:hover {
@@ -116,7 +103,7 @@
   justify-content: center;
   color: var(--silver-mid);
   margin-bottom: 0.4rem;
-  filter: drop-shadow(0 0 5px rgba(200,210,255,0.5));
+  filter: drop-shadow(0 0 5px rgba(200, 210, 255, 0.5));
 }
 
 .icon svg {
@@ -225,12 +212,17 @@
 }
 
 @keyframes btnGlow {
-  0%, 100% {
-    box-shadow: 0 0 6px rgba(196,196,196,0.2), 0 0 12px rgba(196,196,196,0.08);
+  0%,
+  100% {
+    box-shadow:
+      0 0 6px rgba(196, 196, 196, 0.2),
+      0 0 12px rgba(196, 196, 196, 0.08);
     border-color: var(--silver-dark);
   }
   50% {
-    box-shadow: 0 0 14px rgba(255,255,255,0.5), 0 0 28px rgba(210,220,255,0.25);
+    box-shadow:
+      0 0 14px rgba(255, 255, 255, 0.5),
+      0 0 28px rgba(210, 220, 255, 0.25);
     border-color: var(--silver-light);
   }
 }

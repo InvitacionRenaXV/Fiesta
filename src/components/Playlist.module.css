@@ -1,7 +1,6 @@
 .section {
   position: relative;
-  background: linear-gradient(135deg, #1a1a1a 0%, #262626 100%);
-  border-top: 1px solid var(--surface);
+  background: transparent;
   padding: 5rem 1.5rem;
   text-align: center;
   overflow: hidden;
@@ -23,8 +22,15 @@
 }
 
 @keyframes noteTwinkle {
-  0%, 100% { opacity: 0.5; transform: translateY(0) scale(1); }
-  50%       { opacity: 1;   transform: translateY(-6px) scale(1.1); }
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.1);
+  }
 }
 
 .inner {
@@ -47,26 +53,55 @@
   position: absolute;
   font-size: 1.6rem;
   color: var(--silver-mid);
-  filter: drop-shadow(0 0 6px rgba(255,255,255,0.7));
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
   animation: noteDrift 3s ease-in-out infinite;
   animation-delay: calc(var(--i) * 0.35s);
   left: calc(var(--i) * 38px + 4px);
 }
 
-.archNote:nth-child(1) { bottom: 20px; }
-.archNote:nth-child(2) { bottom: 40px; }
-.archNote:nth-child(3) { bottom: 20px; }
-.archNote:nth-child(4) { bottom: 40px; }
-.archNote:nth-child(5) { bottom: 20px; }
-.archNote:nth-child(6) { bottom: 40px; }
-.archNote:nth-child(7) { bottom: 20px; }
+.archNote:nth-child(1) {
+  bottom: 20px;
+}
+.archNote:nth-child(2) {
+  bottom: 40px;
+}
+.archNote:nth-child(3) {
+  bottom: 20px;
+}
+.archNote:nth-child(4) {
+  bottom: 40px;
+}
+.archNote:nth-child(5) {
+  bottom: 20px;
+}
+.archNote:nth-child(6) {
+  bottom: 40px;
+}
+.archNote:nth-child(7) {
+  bottom: 20px;
+}
 
 @keyframes noteDrift {
-  0%   { transform: translateX(0)   translateY(0);   opacity: 0.6; }
-  25%  { transform: translateX(6px)  translateY(-6px); opacity: 1; }
-  50%  { transform: translateX(12px) translateY(0);   opacity: 0.7; }
-  75%  { transform: translateX(6px)  translateY(4px);  opacity: 1; }
-  100% { transform: translateX(0)   translateY(0);   opacity: 0.6; }
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateX(6px) translateY(-6px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(12px) translateY(0);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translateX(6px) translateY(4px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+    opacity: 0.6;
+  }
 }
 
 .heading {
@@ -130,12 +165,17 @@
 }
 
 @keyframes btnGlow {
-  0%, 100% {
-    box-shadow: 0 0 6px rgba(196,196,196,0.2), 0 0 12px rgba(196,196,196,0.08);
+  0%,
+  100% {
+    box-shadow:
+      0 0 6px rgba(196, 196, 196, 0.2),
+      0 0 12px rgba(196, 196, 196, 0.08);
     border-color: var(--silver-dark);
   }
   50% {
-    box-shadow: 0 0 14px rgba(255,255,255,0.5), 0 0 28px rgba(210,220,255,0.25);
+    box-shadow:
+      0 0 14px rgba(255, 255, 255, 0.5),
+      0 0 28px rgba(210, 220, 255, 0.25);
     border-color: var(--silver-light);
   }
 }

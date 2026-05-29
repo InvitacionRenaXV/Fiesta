@@ -20,7 +20,7 @@ const NOTES = [
   { top: '95%', left: '75%', delay: '1.9s', symbol: '♫', size: '1.4rem' },
 ];
 
-export default function Playlist({ isTeens }) {
+export default function Playlist({ isPlaylistlOpen, setisPlaylistlOpen }) {
   return (
     <section className={styles.section}>
       <div className={styles.notesLayer} aria-hidden="true">
@@ -43,7 +43,7 @@ export default function Playlist({ isTeens }) {
           ¿Qué canción o cantante no puede faltar?
         </p>
 
-        <ModalPlaylist />
+        <ModalPlaylist isPlaylistlOpen={isPlaylistlOpen} setisPlaylistlOpen={setisPlaylistlOpen} />
       </div>
     </section>
   );

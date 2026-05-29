@@ -25,8 +25,8 @@ function HeartIcon() {
   );
 }
 
-export default function MusicPlayer({ isTeens, isModalOpen }) {
-  const isHidden = !!isModalOpen;
+export default function MusicPlayer({ isTeens, isConfirmationlOpen }) {
+  const isHidden = !!isConfirmationlOpen;
   const [phase, setPhase] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     return params.has('success') ? 'open' : 'closed';

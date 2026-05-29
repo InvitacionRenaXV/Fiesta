@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './ModalRSVP.module.css';
 
-export default function ModalRSVP({ isTeens, isModalOpen, setIsModalOpen }) {
+export default function ModalRSVP({ isTeens, isConfirmationlOpen, setisConfirmationlOpen }) {
   const [localOpen, setLocalOpen] = useState(false);
   const [enviado, setEnviado] = useState(false);
   const [formData, setFormData] = useState({
@@ -16,10 +17,11 @@ export default function ModalRSVP({ isTeens, isModalOpen, setIsModalOpen }) {
   });
   const previousBodyOverflow = useRef('');
 
-  const isControlled = typeof isModalOpen === 'boolean' && typeof setIsModalOpen === 'function';
-  const isOpen = isControlled ? isModalOpen : localOpen;
+  const isControlled =
+    typeof isConfirmationlOpen === 'boolean' && typeof setisConfirmationlOpen === 'function';
+  const isOpen = isControlled ? isConfirmationlOpen : localOpen;
   const changeOpen = (v) => {
-    if (isControlled) setIsModalOpen(v);
+    if (isControlled) setisConfirmationlOpen(v);
     else setLocalOpen(v);
   };
 
@@ -98,193 +100,195 @@ export default function ModalRSVP({ isTeens, isModalOpen, setIsModalOpen }) {
       </button>
 
       {/* Ventana Modal */}
-      {isOpen && (
-        <div onClick={() => changeOpen(false)} className={styles.modalOverlay}>
-          {/* Se utiliza la clase .confirm para dar la estructura visual de tarjeta */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className={styles.confirm}
-            style={{ position: 'relative' }}
-          >
-            {/* Botón de cierre en cruz */}
-            <span onClick={() => changeOpen(false)} className={styles.modalClose}>
-              &times;
-            </span>
+      {isOpen &&
+        createPortal(
+          <div onClick={() => changeOpen(false)} className={styles.modalOverlay}>
+            {/* Se utiliza la clase .confirm para dar la estructura visual de tarjeta */}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={styles.confirm}
+              style={{ position: 'relative' }}
+            >
+              {/* Botón de cierre en cruz */}
+              <span onClick={() => changeOpen(false)} className={styles.modalClose}>
+                &times;
+              </span>
 
-            {!enviado ? (
-              <>
-                {/* Título elegante adaptado a tu CSS */}
-                <h3 className={styles.heading} style={{ fontSize: '3.5rem' }}>
-                  ¿Venis?
-                </h3>
-                <p className={styles.cardSub}>Por favor, completa los datos para tu asistencia</p>
+              {!enviado ? (
+                <>
+                  {/* Título elegante adaptado a tu CSS */}
+                  <h3 className={styles.heading} style={{ fontSize: '3.5rem' }}>
+                    ¿Venis?
+                  </h3>
+                  <p className={styles.cardSub}>Por favor, completa los datos para tu asistencia</p>
 
-                <form onSubmit={handleSubmit} className={styles.modalForm}>
-                  <div>
-                    <textarea
-                      type="text"
-                      name="nombre"
-                      value={formData.nombre}
-                      onChange={handleChange}
-                      placeholder="Nombre y Apellido"
-                      required
-                      className={styles.modalInput}
-                    />
-                  </div>
-
-                  <div className={styles.radioSection}>
-                    <label className={styles.radioLabel}>¿Asistirás al evento?</label>
-                    <div className={styles.radioGroup}>
-                      <label className={styles.radioOption}>
-                        <input
-                          type="radio"
-                          name="asistencia"
-                          value="Si, obvio!"
-                          checked={formData.asistencia === 'Si, obvio!'}
-                          onChange={handleChange}
-                          required
-                        />{' '}
-                        Asistiré con gusto
-                      </label>
-                      <label className={styles.radioOption}>
-                        <input
-                          type="radio"
-                          name="asistencia"
-                          value="No =("
-                          checked={formData.asistencia === 'No =('}
-                          onChange={handleChange}
-                        />{' '}
-                        No podré asistir
-                      </label>
-                    </div>
-                  </div>
-
-                  <div>
-                    <input
-                      type="text"
-                      name="cedula"
-                      value={formData.cedula}
-                      onChange={handleChange}
-                      placeholder="Cédula"
-                      required
-                      className={styles.modalInput}
-                    />
-                  </div>
-                  {isTeens && (
-                    <>
-                      <div>
-                        <input
-                          type="text"
-                          name="nombreAdulto"
-                          value={formData.nombreAdulto}
-                          onChange={handleChange}
-                          placeholder="Nombre de Madre, Padre o tutor"
-                          required
-                          className={styles.modalInput}
-                        />
-                      </div>
-                      <div>
-                        <input
-                          type="text"
-                          name="telefonoAdulto"
-                          value={formData.telefonoAdulto}
-                          onChange={handleChange}
-                          placeholder="Teléfono de Madre, Padre o tutor"
-                          required
-                          className={styles.modalInput}
-                        />
-                      </div>
-                    </>
-                  )}
-
-                  <div className={styles.radioSection}>
-                    <label className={styles.radioLabel}>Menú especial</label>
-                    <div className={styles.radioGroup}>
-                      <label className={styles.radioOption}>
-                        <input
-                          type="radio"
-                          name="restricciones"
-                          value="Ninguna"
-                          checked={formData.restricciones === 'Ninguna'}
-                          onChange={handleChange}
-                        />{' '}
-                        Ninguna
-                      </label>
-                      <label className={styles.radioOption}>
-                        <input
-                          type="radio"
-                          name="restricciones"
-                          value="Celiac@"
-                          checked={formData.restricciones === 'Celiac@'}
-                          onChange={handleChange}
-                        />{' '}
-                        Celiac@
-                      </label>
-                      <label className={styles.radioOption}>
-                        <input
-                          type="radio"
-                          name="restricciones"
-                          value="Vegetarian@"
-                          checked={formData.restricciones === 'Vegetarian@'}
-                          onChange={handleChange}
-                        />{' '}
-                        Vegetarian@
-                      </label>
-                      <label className={styles.radioOption}>
-                        <input
-                          type="radio"
-                          name="restricciones"
-                          value="Otro"
-                          checked={formData.restricciones === 'Otro'}
-                          onChange={handleChange}
-                        />{' '}
-                        Otro
-                      </label>
-                    </div>
-                  </div>
-                  {formData.restricciones === 'Otro' && (
+                  <form onSubmit={handleSubmit} className={styles.modalForm}>
                     <div>
                       <textarea
-                        name="restriccionesDetalle"
-                        value={formData.restriccionesDetalle}
+                        type="text"
+                        name="nombre"
+                        value={formData.nombre}
                         onChange={handleChange}
-                        placeholder="Especificá (ej. 'No come pescado')"
+                        placeholder="Nombre y Apellido"
+                        required
+                        className={styles.modalInput}
+                      />
+                    </div>
+
+                    <div className={styles.radioSection}>
+                      <label className={styles.radioLabel}>¿Asistirás al evento?</label>
+                      <div className={styles.radioGroup}>
+                        <label className={styles.radioOption}>
+                          <input
+                            type="radio"
+                            name="asistencia"
+                            value="Si, obvio!"
+                            checked={formData.asistencia === 'Si, obvio!'}
+                            onChange={handleChange}
+                            required
+                          />{' '}
+                          Asistiré con gusto
+                        </label>
+                        <label className={styles.radioOption}>
+                          <input
+                            type="radio"
+                            name="asistencia"
+                            value="No =("
+                            checked={formData.asistencia === 'No =('}
+                            onChange={handleChange}
+                          />{' '}
+                          No podré asistir
+                        </label>
+                      </div>
+                    </div>
+
+                    <div>
+                      <input
+                        type="text"
+                        name="cedula"
+                        value={formData.cedula}
+                        onChange={handleChange}
+                        placeholder="Cédula"
+                        required
+                        className={styles.modalInput}
+                      />
+                    </div>
+                    {isTeens && (
+                      <>
+                        <div>
+                          <input
+                            type="text"
+                            name="nombreAdulto"
+                            value={formData.nombreAdulto}
+                            onChange={handleChange}
+                            placeholder="Nombre de Madre, Padre o tutor"
+                            required
+                            className={styles.modalInput}
+                          />
+                        </div>
+                        <div>
+                          <input
+                            type="text"
+                            name="telefonoAdulto"
+                            value={formData.telefonoAdulto}
+                            onChange={handleChange}
+                            placeholder="Teléfono de Madre, Padre o tutor"
+                            required
+                            className={styles.modalInput}
+                          />
+                        </div>
+                      </>
+                    )}
+
+                    <div className={styles.radioSection}>
+                      <label className={styles.radioLabel}>Menú especial</label>
+                      <div className={styles.radioGroup}>
+                        <label className={styles.radioOption}>
+                          <input
+                            type="radio"
+                            name="restricciones"
+                            value="Ninguna"
+                            checked={formData.restricciones === 'Ninguna'}
+                            onChange={handleChange}
+                          />{' '}
+                          Ninguna
+                        </label>
+                        <label className={styles.radioOption}>
+                          <input
+                            type="radio"
+                            name="restricciones"
+                            value="Celiac@"
+                            checked={formData.restricciones === 'Celiac@'}
+                            onChange={handleChange}
+                          />{' '}
+                          Celiac@
+                        </label>
+                        <label className={styles.radioOption}>
+                          <input
+                            type="radio"
+                            name="restricciones"
+                            value="Vegetarian@"
+                            checked={formData.restricciones === 'Vegetarian@'}
+                            onChange={handleChange}
+                          />{' '}
+                          Vegetarian@
+                        </label>
+                        <label className={styles.radioOption}>
+                          <input
+                            type="radio"
+                            name="restricciones"
+                            value="Otro"
+                            checked={formData.restricciones === 'Otro'}
+                            onChange={handleChange}
+                          />{' '}
+                          Otro
+                        </label>
+                      </div>
+                    </div>
+                    {formData.restricciones === 'Otro' && (
+                      <div>
+                        <textarea
+                          name="restriccionesDetalle"
+                          value={formData.restriccionesDetalle}
+                          onChange={handleChange}
+                          placeholder="Especificá (ej. 'No come pescado')"
+                          className={styles.modalInput}
+                          rows={2}
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <textarea
+                        name="mensaje"
+                        value={formData.mensaje}
+                        onChange={handleChange}
+                        placeholder="Mensaje especial"
                         className={styles.modalInput}
                         rows={2}
                       />
                     </div>
-                  )}
-                  <div>
-                    <textarea
-                      name="mensaje"
-                      value={formData.mensaje}
-                      onChange={handleChange}
-                      placeholder="Mensaje especial"
-                      className={styles.modalInput}
-                      rows={2}
-                    />
-                  </div>
-                  <button type="submit" className={styles.btn} style={{ marginTop: '0.5rem' }}>
-                    Confirmar
-                  </button>
-                </form>
-              </>
-            ) : (
-              <div className={styles.inner}>
-                <h3 className={styles.heading} style={{ fontSize: '3rem' }}>
-                  ¡Gracias!
-                </h3>
-                <p className={styles.confirmText}>
-                  ✨<br />
-                  Tu respuesta ha sido registrada con éxito.
-                  <br />
-                  Muchas gracias.
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+                    <button type="submit" className={styles.btn} style={{ marginTop: '0.5rem' }}>
+                      Confirmar
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <div className={styles.inner}>
+                  <h3 className={styles.heading} style={{ fontSize: '3rem' }}>
+                    ¡Gracias!
+                  </h3>
+                  <p className={styles.confirmText}>
+                    ✨<br />
+                    Tu respuesta ha sido registrada con éxito.
+                    <br />
+                    Muchas gracias.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>,
+          document.body
+        )}
     </>
   );
 }

@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './ModalRSVP.module.css';
 
-export default function ModalPlaylist({ isTeens, isModalOpen, setIsModalOpen }) {
+export default function ModalPlaylist({ isPlaylistlOpen, setisPlaylistlOpen }) {
   const [localOpen, setLocalOpen] = useState(false);
   const [enviado, setEnviado] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
     cancion: '',
   });
+  const previousBodyOverflow = useRef('');
 
-  const isControlled = typeof isModalOpen === 'boolean' && typeof setIsModalOpen === 'function';
-  const isOpen = isControlled ? isModalOpen : localOpen;
+  const isControlled =
+    typeof isPlaylistlOpen === 'boolean' && typeof setisPlaylistlOpen === 'function';
+  const isOpen = isControlled ? isPlaylistlOpen : localOpen;
   const changeOpen = (v) => {
-    if (isControlled) setIsModalOpen(v);
+    if (isControlled) setisPlaylistlOpen(v);
     else setLocalOpen(v);
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      previousBodyOverflow.current = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = previousBodyOverflow.current || '';
+    }
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow.current || '';
+    };
+  }, [isOpen]);
 
   const handleChange = (e) => {
     setFormData({
@@ -63,70 +79,72 @@ export default function ModalPlaylist({ isTeens, isModalOpen, setIsModalOpen }) 
       </button>
 
       {/* Ventana Modal */}
-      {isOpen && (
-        <div onClick={() => changeOpen(false)} className={styles.modalOverlay}>
-          {/* Se utiliza la clase .confirm para dar la estructura visual de tarjeta */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className={styles.confirm}
-            style={{ position: 'relative' }}
-          >
-            {/* Botón de cierre en cruz */}
-            <span onClick={() => changeOpen(false)} className={styles.modalClose}>
-              &times;
-            </span>
+      {isOpen &&
+        createPortal(
+          <div onClick={() => changeOpen(false)} className={styles.modalOverlay}>
+            {/* Se utiliza la clase .confirm para dar la estructura visual de tarjeta */}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={styles.confirm}
+              style={{ position: 'relative' }}
+            >
+              {/* Botón de cierre en cruz */}
+              <span onClick={() => changeOpen(false)} className={styles.modalClose}>
+                &times;
+              </span>
 
-            {!enviado ? (
-              <>
-                {/* Título elegante adaptado a tu CSS */}
-                <h3 className={styles.heading} style={{ fontSize: '3.5rem' }}>
-                  ¿Creamos la Playlist?
-                </h3>
+              {!enviado ? (
+                <>
+                  {/* Título elegante adaptado a tu CSS */}
+                  <h3 className={styles.heading} style={{ fontSize: '3.5rem' }}>
+                    ¿Creamos la Playlist?
+                  </h3>
 
-                <form onSubmit={handleSubmit} className={styles.modalForm}>
-                  <div>
-                    <textarea
-                      type="text"
-                      name="nombre"
-                      value={formData.nombre}
-                      onChange={handleChange}
-                      placeholder="Quien la pide?"
-                      required
-                      className={styles.modalInput}
-                    />
-                  </div>
-                  <div>
-                    <textarea
-                      type="text"
-                      name="cancion"
-                      value={formData.cancion}
-                      onChange={handleChange}
-                      placeholder=" Qué canción o cantante no debe faltar?"
-                      required
-                      className={styles.modalInput}
-                    />
-                  </div>
-                  <button type="submit" className={styles.btn} style={{ marginTop: '0.5rem' }}>
-                    Confirmar
-                  </button>
-                </form>
-              </>
-            ) : (
-              <div className={styles.inner}>
-                <h3 className={styles.heading} style={{ fontSize: '3rem' }}>
-                  ¡Gracias!
-                </h3>
-                <p className={styles.confirmText}>
-                  ✨<br />
-                  Tu respuesta ha sido registrada con éxito.
-                  <br />
-                  Muchas gracias.
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+                  <form onSubmit={handleSubmit} className={styles.modalForm}>
+                    <div>
+                      <textarea
+                        type="text"
+                        name="nombre"
+                        value={formData.nombre}
+                        onChange={handleChange}
+                        placeholder="Quien la pide?"
+                        required
+                        className={styles.modalInput}
+                      />
+                    </div>
+                    <div>
+                      <textarea
+                        type="text"
+                        name="cancion"
+                        value={formData.cancion}
+                        onChange={handleChange}
+                        placeholder=" Qué canción o cantante no debe faltar?"
+                        required
+                        className={styles.modalInput}
+                      />
+                    </div>
+                    <button type="submit" className={styles.btn} style={{ marginTop: '0.5rem' }}>
+                      Confirmar
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <div className={styles.inner}>
+                  <h3 className={styles.heading} style={{ fontSize: '3rem' }}>
+                    ¡Gracias!
+                  </h3>
+                  <p className={styles.confirmText}>
+                    ✨<br />
+                    Tu respuesta ha sido registrada con éxito.
+                    <br />
+                    Muchas gracias.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>,
+          document.body
+        )}
     </>
   );
 }

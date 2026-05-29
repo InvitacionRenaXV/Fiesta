@@ -1,5 +1,5 @@
 .section {
-  background: linear-gradient(160deg, #242424 0%, #1c1c1c 100%);
+  background: transparent;
   padding: 5rem 1.5rem;
   text-align: center;
 }
@@ -70,7 +70,7 @@
   width: 60px;
   height: 100px;
   color: var(--silver-mid);
-  filter: drop-shadow(0 0 5px rgba(200,210,255,0.4));
+  filter: drop-shadow(0 0 5px rgba(200, 210, 255, 0.4));
 }
 
 .outfitLabel {
@@ -93,8 +93,13 @@
 }
 
 @keyframes sway {
-  0%, 100% { transform: rotate(-3deg); }
-  50%       { transform: rotate(3deg); }
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
 }
 
 .forbidden {
@@ -164,8 +169,10 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.15);
-  box-shadow: 0 0 10px rgba(255,255,255,0.08), 0 2px 8px rgba(0,0,0,0.5);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 0 10px rgba(255, 255, 255, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .swatchName {

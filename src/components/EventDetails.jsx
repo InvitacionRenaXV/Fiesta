@@ -4,36 +4,11 @@ import LocationIcon from '../assets/LocationIcon';
 import RSVPIcon from '../assets/RSVPIcon';
 import ModalRSVP from './ModalRSVP';
 import { ShootingStarDivider } from './Divider';
+import { handleCalendar } from '../utils/handleCalendar';
 
-const SPARKS = [
-  { top: '10%', left: '4%', delay: '0s', size: '5px' },
-  { top: '20%', left: '93%', delay: '0.6s', size: '4px' },
-  { top: '55%', left: '2%', delay: '1.1s', size: '3px' },
-  { top: '70%', left: '96%', delay: '0.3s', size: '5px' },
-  { top: '30%', left: '88%', delay: '1.4s', size: '4px' },
-  { top: '80%', left: '7%', delay: '0.8s', size: '3px' },
-  { top: '45%', left: '91%', delay: '1.9s', size: '4px' },
-  { top: '15%', left: '10%', delay: '0.5s', size: '3px' },
-];
-
-export default function EventDetails({ isTeens, isModalOpen, setIsModalOpen }) {
+export default function EventDetails({ isTeens, isConfirmationlOpen, setisConfirmationlOpen }) {
   return (
     <section id="evento" className={styles.section}>
-      <div className={styles.sparksLayer} aria-hidden="true">
-        {SPARKS.map((s, i) => (
-          <span
-            key={i}
-            className={styles.spark}
-            style={{
-              top: s.top,
-              left: s.left,
-              animationDelay: s.delay,
-              width: s.size,
-              height: s.size,
-            }}
-          />
-        ))}
-      </div>
       <div className={styles.inner}>
         <p className={styles.eyebrow}>Te invito a celebrar</p>
         <h2 className={styles.heading}>Mis XV Años</h2>
@@ -49,6 +24,9 @@ export default function EventDetails({ isTeens, isModalOpen, setIsModalOpen }) {
             <h3 className={styles.cardTitle}>Fecha &amp; Hora</h3>
             <p className={styles.cardMain}>Sábado 5 de Septiembre, 2026</p>
             <p className={styles.cardSub}>20:00 hs. a 04:00 hs.</p>
+            <button onClick={handleCalendar} className={styles.mapBtn}>
+              Agregar al calendario
+            </button>
           </div>
 
           {/* Location */}
@@ -82,7 +60,11 @@ export default function EventDetails({ isTeens, isModalOpen, setIsModalOpen }) {
             <strong>20 de agosto</strong>, para poder organizar todo de la mejor manera y
             asegurarnos de que tengas una experiencia increíble
           </p>
-          <ModalRSVP isTeens={isTeens} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+          <ModalRSVP
+            isTeens={isTeens}
+            isConfirmationlOpen={isConfirmationlOpen}
+            setisConfirmationlOpen={setisConfirmationlOpen}
+          />
         </div>
       </div>
     </section>

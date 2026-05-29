@@ -1,5 +1,5 @@
 .section {
-  background-color: var(--dark);
+  background: transparent;
   padding: 5rem 1.5rem;
   text-align: center;
 }
@@ -26,9 +26,17 @@
 }
 
 @keyframes lidBounce {
-  0%             { transform: translateY(0) rotate(0deg); }
-  20%            { transform: translateY(-22px) rotate(180deg); }
-  40%, 55%, 100% { transform: translateY(0) rotate(360deg); }
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-22px) rotate(180deg);
+  }
+  40%,
+  55%,
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
 }
 
 .heading {
