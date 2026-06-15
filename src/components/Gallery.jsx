@@ -7,13 +7,11 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 import styles from './Gallery.module.css';
 
-import img1 from '../assets/gallery/1.jpeg';
 import img2 from '../assets/gallery/2.jpeg';
-import img3 from '../assets/gallery/3.jpeg';
-import img4 from '../assets/gallery/4.jpeg';
-import img5 from '../assets/gallery/5.jpeg';
+import img6 from '../assets/gallery/6.jpeg';
+import img8 from '../assets/gallery/8.jpeg';
 
-const IMAGES = [img1, img2, img3, img4, img5];
+const IMAGES = [img2, img6, img8];
 
 export default function Gallery() {
   return (
