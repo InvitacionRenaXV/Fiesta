@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from './Hero.module.css';
-import exteriores from '../assets/exteriores.jpg';
+import exteriores from '../assets/exteriores.jpeg';
 
 const SPARKS = [
   { top: '12%', left: '8%', delay: '0s', size: '6px' },
