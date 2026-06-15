@@ -9,17 +9,21 @@
   text-align: center;
   padding: 2rem 1.5rem;
   overflow: hidden;
-  background-color: #0e0e0e; /* Aseguramos que el fondo base sea el correcto */
+  /* La clave del blending: El Hero se vuelve transparente en la base, no negro */
+  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
 }
 
 /* Fondo con imagen difuminada */
 .heroBg {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: -1;
   pointer-events: none;
   overflow: hidden;
-  backface-visibility: hidden;
+  /* Aseguramos que la imagen también se desvanezca antes del límite */
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
 
 .bgImage {
@@ -29,16 +33,6 @@
   will-change: transform, filter;
   filter: blur(2px) brightness(0.65);
   transform: scale(1.1);
-}
-
-/* Reemplazo de mask-image con un degradado overlay para mejorar el performance de scroll */
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 75%, #0e0e0e 100%);
-  pointer-events: none;
-  z-index: 3;
 }
 
 /* Unificamos el resplandor decorativo con el resto de las secciones */
@@ -57,16 +51,15 @@
   );
   pointer-events: none;
   filter: blur(40px);
-  z-index: 2;
-  backface-visibility: hidden;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 1;
   background-image:
     radial-gradient(circle at 80% 20%, rgba(200, 200, 240, 0.07) 0%, transparent 50%),
+    /* Eliminamos los gradientes que llevaban al negro puro */
     radial-gradient(circle at 50% 50%, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
   pointer-events: none;
 }
@@ -76,8 +69,10 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 2;
-  backface-visibility: hidden;
+  z-index: 0;
+  /* Desvanecemos el humo antes de la unión */
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 90%);
+  mask-image: linear-gradient(to bottom, black 60%, transparent 90%);
 }
 
 .smoke1,
@@ -96,7 +91,6 @@
   bottom: -60px;
   left: -10%;
   animation: drift1 18s ease-in-out infinite;
-  backface-visibility: hidden;
 }
 
 .smoke2 {
@@ -106,7 +100,6 @@
   right: -5%;
   animation: drift2 22s ease-in-out infinite;
   animation-delay: -7s;
-  backface-visibility: hidden;
 }
 
 .smoke3 {
@@ -116,7 +109,6 @@
   left: 20%;
   animation: drift1 26s ease-in-out infinite;
   animation-delay: -12s;
-  backface-visibility: hidden;
 }
 
 .smoke4 {
@@ -126,7 +118,6 @@
   left: 10%;
   animation: drift2 20s ease-in-out infinite;
   animation-delay: -4s;
-  backface-visibility: hidden;
 }
 
 @keyframes drift1 {
@@ -164,7 +155,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 0;
   transform: translateZ(0); /* Evita que el desenfoque del fondo afecte la nitidez de las chispas */
   will-change: transform;
 }

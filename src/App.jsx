@@ -24,11 +24,11 @@ export default function App() {
   useEffect(() => {
     // Inicialización de Lenis para scroll fluido estilo lenis.dev
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.2, // Reducido para mayor respuesta al tacto
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 1,
-      smoothTouch: false, // Desactivamos el suavizado táctil para usar el scroll nativo en móviles
+      touchMultiplier: 1.5, // Un poco más de sensibilidad para iPhone
+      smoothTouch: true, // Habilita explícitamente el suavizado táctil
     });
 
     lenis.on('scroll', ({ velocity, scroll }) => {
