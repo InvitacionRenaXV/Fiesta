@@ -103,13 +103,12 @@ export default function ModalPlaylist({ isPlaylistOpen, setIsPlaylistOpen }) {
       {/* Ventana Modal */}
       {isOpen &&
         createPortal(
-          <div onClick={() => changeOpen(false)} className={styles.modalOverlay} data-lenis-prevent>
+          <div onClick={() => changeOpen(false)} className={styles.modalOverlay}>
             {/* Se utiliza la clase .confirm para dar la estructura visual de tarjeta */}
             <div
               onClick={(e) => e.stopPropagation()}
               className={styles.confirm}
               style={{ position: 'relative' }}
-              data-lenis-prevent
             >
               {/* Botón de cierre en cruz */}
               <span onClick={() => changeOpen(false)} className={styles.modalClose}>

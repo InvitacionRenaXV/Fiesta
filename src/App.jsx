@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
-import Lenis from 'lenis';
+import { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import Countdown from './components/Countdown';
 import EventDetails from './components/EventDetails';
@@ -20,31 +19,6 @@ export default function App() {
   const [isPlaylistOpen, setIsPlaylistOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showPreloader, setShowPreloader] = useState(true);
-
-  useEffect(() => {
-    // Inicialización de Lenis para scroll fluido estilo lenis.dev
-    const lenis = new Lenis({
-      duration: 1.2, // Reducido para mayor respuesta al tacto
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1.5, // Un poco más de sensibilidad para iPhone
-      smoothTouch: true, // Habilita explícitamente el suavizado táctil
-    });
-
-    lenis.on('scroll', ({ velocity, scroll }) => {
-      document.documentElement.style.setProperty('--scroll-velocity', velocity);
-      document.documentElement.style.setProperty('--scroll-y', scroll);
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => lenis.destroy();
-  }, []);
 
   useEffect(() => {
     const finishLoading = () => {

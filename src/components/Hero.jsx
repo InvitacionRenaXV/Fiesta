@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
 import styles from './Hero.module.css';
-import exteriores from '../assets/exteriores.jpg';
+import exteriores from '../assets/exteriores.png';
 
 const SPARKS = [
   { top: '12%', left: '8%', delay: '0s', size: '6px' },
@@ -18,47 +17,13 @@ const SPARKS = [
 ];
 
 export default function Hero() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (window.innerWidth > 1024) {
-        setMousePos({
-          x: (e.clientX / window.innerWidth - 0.5) * 20,
-          y: (e.clientY / window.innerHeight - 0.5) * 20,
-        });
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
   return (
     <section className={styles.hero}>
       <div className={styles.heroBg} aria-hidden="true">
-        <img
-          src={exteriores}
-          className={styles.bgImage}
-          alt=""
-          fetchPriority="high"
-          style={{
-            transform: `scale(calc(1.05 + var(--scroll-y, 0) * 0.0002)) translateY(calc(var(--scroll-y, 0) * 0.15 * 1px))`,
-          }}
-        />
+        <img src={exteriores} className={styles.bgImage} alt="" fetchPriority="high" />
       </div>
 
-      {/* Disco sparkle particles */}
-      <div
-        className={styles.sparksLayer}
-        aria-hidden="true"
-        style={{
-          transform: `translateY(calc(var(--scroll-y, 0) * 0.4 * 1px)) translate(${mousePos.x}px, ${mousePos.y}px)`,
-          transition: 'transform 0.1s ease-out',
-        }}
-      >
+      <div className={styles.sparksLayer} aria-hidden="true">
         {SPARKS.map((s, i) => (
           <span
             key={i}
@@ -76,42 +41,16 @@ export default function Hero() {
 
       <div className={styles.overlay} />
 
-      {/* Smoke effect */}
-
       <div className={styles.content}>
-        <p
-          className={styles.preTitle}
-          style={{
-            letterSpacing: `calc(0.4em + var(--scroll-y, 0) * 0.001em)`,
-            opacity: `calc(0.7 - var(--scroll-y, 0) * 0.002)`,
-          }}
-        >
-          MIS XV AÑOS
-        </p>
+        <p className={styles.preTitle}>MIS XV AÑOS</p>
 
         <div className={styles.nameWrap}>
           <span className={styles.line} />
-          <h1
-            className={styles.name}
-            style={{
-              letterSpacing: `calc(-0.02em + var(--scroll-y, 0) * 0.00005em)`,
-              opacity: `calc(1 - var(--scroll-y, 0) * 0.0015)`,
-            }}
-          >
-            Rena
-          </h1>
+          <h1 className={styles.name}>Rena</h1>
           <span className={styles.line} />
         </div>
 
-        <p
-          className={styles.date}
-          style={{
-            letterSpacing: `calc(0.35em + var(--scroll-y, 0) * 0.0005em)`,
-            opacity: `calc(1 - var(--scroll-y, 0) * 0.002)`,
-          }}
-        >
-          05 · 09 · 2026
-        </p>
+        <p className={styles.date}>05 · 09 · 2026</p>
 
         <div className={styles.florals} aria-hidden="true">
           <span>✦</span>
@@ -119,15 +58,7 @@ export default function Hero() {
           <span>✦</span>
         </div>
 
-        <p
-          className={styles.quote}
-          style={{
-            letterSpacing: `calc(0.02em + var(--scroll-y, 0) * 0.0002em)`,
-            opacity: `calc(1 - var(--scroll-y, 0) * 0.0025)`,
-          }}
-        >
-          "Crecer es inevitable, brillar es una elección"
-        </p>
+        <p className={styles.quote}>"Crecer es inevitable, brillar es una elección"</p>
       </div>
 
       <div className={styles.scrollHint} aria-hidden="true">

@@ -7,7 +7,7 @@
 }
 
 :root {
-  --black: #141414;
+  --black: #161616;
   --dark: #1e1e1e;
   --dark-mid: #2a2a2a;
   --surface: #333333;
@@ -22,6 +22,13 @@
   --text-dark: #f4f4f4;
   --text-mid: #c0c0c0;
   --text-light: #909090;
+}
+/* src/index.css */
+html,
+body {
+  overscroll-behavior-x: none;
+  max-width: 100%;
+  overflow-x: hidden; /* Asegura que no haya scroll horizontal por error */
 }
 
 body {

@@ -47,7 +47,10 @@
   background-clip: text;
   line-height: 1;
   letter-spacing: -0.02em;
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.35));
+  text-shadow:
+    0 0 16px rgba(255, 255, 255, 0.35),
+    0 0 34px rgba(170, 200, 255, 0.22);
   animation: chromeMove 8s infinite alternate ease-in-out;
 }
 
@@ -56,26 +59,29 @@
   font-size: 0.6rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--silver-dark);
+  color: #dfe8ff;
   margin-top: 0.25rem;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.18);
 }
 
 .colon {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2rem, 6vw, 3.5rem);
-  color: var(--silver-dark);
+  color: #eef5ff;
   line-height: 1;
   align-self: flex-start;
   padding-top: 0.1em;
   animation: colonPulse 1.5s ease-in-out infinite;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.28);
 }
 
 .sub {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 1.5rem;
-  color: var(--text-light);
+  color: #e9f1ff;
   cursor: default;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.18);
 }
 
 .miniDisco {

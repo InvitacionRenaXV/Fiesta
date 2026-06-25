@@ -1,53 +1,33 @@
-import React, { useEffect, useRef, useState } from 'react';
 import styles from './Reveal.module.css';
 
-const SECTION_SPARKS = [
-  { top: '15%', left: '8%', delay: '0s', size: '4px' },
-  { top: '45%', left: '92%', delay: '0.4s', size: '5px' },
-  { top: '75%', left: '4%', delay: '1.1s', size: '3px' },
-  { top: '25%', left: '85%', delay: '0.7s', size: '4px' },
-  { top: '85%', left: '78%', delay: '1.5s', size: '5px' },
-  { top: '60%', left: '12%', delay: '0.2s', size: '3px' },
-  { top: '35%', left: '20%', delay: '0.9s', size: '4px' },
-  { top: '70%', left: '60%', delay: '1.2s', size: '3px' },
-  { top: '10%', left: '45%', delay: '1.8s', size: '5px' },
-  { top: '90%', left: '30%', delay: '0.5s', size: '4px' },
+const SPARKS = [
+  { top: '12%', left: '10%', delay: '0s', size: '4px' },
+  { top: '18%', left: '82%', delay: '0.7s', size: '3px' },
+  { top: '33%', left: '25%', delay: '1.2s', size: '5px' },
+  { top: '46%', left: '68%', delay: '0.4s', size: '4px' },
+  { top: '60%', left: '12%', delay: '1.8s', size: '3px' },
+  { top: '72%', left: '84%', delay: '0.9s', size: '4px' },
+  { top: '30%', left: '50%', delay: '1.4s', size: '3px' },
+  { top: '78%', left: '38%', delay: '0.2s', size: '5px' },
+  { top: '54%', left: '92%', delay: '1.1s', size: '3px' },
+  { top: '88%', left: '18%', delay: '0.6s', size: '4px' },
 ];
 
 export default function Reveal({ children, excludeSparks = false }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0, rootMargin: '0px 0px 250px 0px' }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    /* Agregamos "visible" como string literal para que los selectores :global(.visible) funcionen */
-    <div ref={ref} className={`${styles.reveal} ${isVisible ? `${styles.visible} visible` : ''}`}>
+    <div className={styles.reveal}>
       {!excludeSparks && (
         <div className={styles.sparksLayer} aria-hidden="true">
-          {SECTION_SPARKS.map((s, i) => (
+          {SPARKS.map((spark, index) => (
             <span
-              key={i}
+              key={index}
               className={styles.spark}
               style={{
-                top: s.top,
-                left: s.left,
-                animationDelay: s.delay,
-                width: s.size,
-                height: s.size,
+                top: spark.top,
+                left: spark.left,
+                width: spark.size,
+                height: spark.size,
+                animationDelay: spark.delay,
               }}
             />
           ))}

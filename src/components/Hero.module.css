@@ -1,38 +1,46 @@
 .hero {
   position: relative;
-  height: 100dvh; /* Dynamic height para Safari iOS */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background-color: var(--black, #161616);
   text-align: center;
   padding: 2rem 1.5rem;
   overflow: hidden;
-  /* La clave del blending: El Hero se vuelve transparente en la base, no negro */
-  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
 }
 
 /* Fondo con imagen difuminada */
 .heroBg {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 1;
   pointer-events: none;
   overflow: hidden;
-  /* Aseguramos que la imagen también se desvanezca antes del límite */
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  backface-visibility: hidden;
+}
+
+/* Reemplazo de mask-image por un overlay más eficiente */
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40%; /* Un área de fundido más razonable */
+  background: linear-gradient(to bottom, transparent, var(--black, #161616) 100%);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .bgImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  will-change: transform, filter;
+  will-change: transform;
   filter: blur(2px) brightness(0.65);
-  transform: scale(1.1);
+  transform: none;
 }
 
 /* Unificamos el resplandor decorativo con el resto de las secciones */
@@ -69,10 +77,8 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
-  /* Desvanecemos el humo antes de la unión */
-  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 90%);
-  mask-image: linear-gradient(to bottom, black 60%, transparent 90%);
+  z-index: 2;
+  backface-visibility: hidden;
 }
 
 .smoke1,
@@ -83,6 +89,51 @@
   border-radius: 50%;
   background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
   filter: blur(40px);
+}
+
+@media (max-width: 768px) {
+  /* En móvil simplificamos el banner: menos blur/animaciones para evitar tirones */
+  .smoke3,
+  .smoke4 {
+    display: none;
+  }
+  .smoke1,
+  .smoke2 {
+    filter: blur(18px);
+    opacity: 0.25;
+    animation: none;
+  }
+
+  /* Desactivar animaciones de shimmer/textGlow y bounce en móvil */
+  .name {
+    animation: none;
+  }
+  .line::after {
+    animation: none;
+  }
+  .star {
+    animation: none;
+    opacity: 0.7;
+  }
+  .scrollHint {
+    animation: none;
+  }
+  .scrollHint span {
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+  }
+
+  /* Disco ball sin animación en móvil */
+  .discoBall {
+    animation: none;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  }
+
+  /* Sparkles estáticos para no competir con el scroll */
+  .spark {
+    animation: none;
+    box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.75);
+    opacity: 0.7;
+  }
 }
 
 .smoke1 {
@@ -192,7 +243,7 @@
   filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.45));
   animation: sway 4s ease-in-out infinite;
   user-select: none;
-  z-index: 0;
+  z-index: 2;
 }
 
 @keyframes sway {
@@ -207,7 +258,7 @@
 
 .content {
   position: relative;
-  z-index: 2;
+  z-index: 5; /* Por encima del resplandor proyectado desde abajo */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -220,8 +271,11 @@
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.4em;
-  color: var(--silver);
+  color: var(--silver-light);
   text-transform: uppercase;
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.35),
+    0 0 24px rgba(180, 205, 255, 0.18);
 }
 
 .nameWrap {
@@ -261,6 +315,9 @@
   animation: textGlow 4s ease-in-out infinite;
   position: relative;
   letter-spacing: -0.02em;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.5),
+    0 0 40px rgba(170, 200, 255, 0.3);
 }
 
 @keyframes shimmer {
@@ -279,13 +336,11 @@
     text-shadow:
       0 0 10px rgba(255, 255, 255, 0.2),
       0 0 20px rgba(200, 210, 255, 0.1);
-    transform: scale(1);
   }
   50% {
     text-shadow:
       0 0 25px rgba(255, 255, 255, 0.5),
       0 0 45px rgba(200, 210, 255, 0.3);
-    transform: scale(1.02);
   }
 }
 
@@ -293,7 +348,8 @@
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1.4rem, 4vw, 2rem);
   font-weight: 300;
-  color: var(--silver-mid);
+  color: #eef5ff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.18);
 }
 
 .florals {

@@ -5,6 +5,7 @@
   justify-content: center;
   background: transparent;
   overflow-x: hidden; /* Crucial: contiene el resplandor expansivo para que no genere scroll en la página */
+  touch-action: pan-y pinch-zoom;
 }
 
 .container {
@@ -19,7 +20,8 @@
   padding: 80px 40px !important; /* Más aire para que el resplandor respire */
   margin: 0 !important;
   position: relative;
-  overflow: visible !important; /* Permite que el resplandor de los slides se proyecte por toda la sección */
+  overflow: hidden !important; /* Permite que el resplandor de los slides se proyecte por toda la sección */
+  touch-action: pan-y pinch-zoom;
 }
 
 .slide {

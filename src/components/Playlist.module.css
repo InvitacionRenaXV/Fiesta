@@ -21,6 +21,33 @@
   user-select: none;
 }
 
+@media (max-width: 768px) {
+  /* Mantener un movimiento MUY sutil para que “no se apaguen” las notas,
+     pero evitar el coste del twinkle continuo */
+  .note {
+    animation: noteTwinkleMobile 2.8s ease-in-out infinite;
+    opacity: 0.35;
+    filter: drop-shadow(0 0 3px rgba(200, 210, 255, 0.35));
+  }
+
+  .btn {
+    animation: none;
+    box-shadow: none;
+  }
+}
+
+@keyframes noteTwinkleMobile {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-2px) scale(1.06);
+  }
+}
+
 @keyframes noteTwinkle {
   0%,
   100% {
@@ -113,6 +140,9 @@
   background-clip: text;
   line-height: 1.15;
   padding: 0.15em 0.15em 0;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.36),
+    0 0 34px rgba(190, 210, 255, 0.18);
 }
 
 .divider {
@@ -138,9 +168,10 @@
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 1.1rem;
-  color: var(--text-mid);
+  color: #e9efff;
   line-height: 1.8;
   text-align: center;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.14);
 }
 
 .btn {

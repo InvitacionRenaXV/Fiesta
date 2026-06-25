@@ -35,6 +35,9 @@
   background-clip: text;
   line-height: 1.15;
   padding: 0.15em 0.15em 0;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.36),
+    0 0 36px rgba(180, 205, 255, 0.2);
 }
 
 .divider {
@@ -92,22 +95,6 @@
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  /* Estado inicial para la animación de entrada */
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-/* Entrada escalonada vinculada a la clase .visible del componente Reveal */
-:global(.visible) .card:nth-child(1) {
-  animation: fadeInUp 0.8s forwards 0.2s;
-}
-:global(.visible) .card:nth-child(2) {
-  animation: fadeInUp 0.8s forwards 0.4s;
-}
-
-/* Animamos también el bloque de confirmación para que sea coherente */
-:global(.visible) .confirm {
-  animation: fadeInUp 0.8s forwards 0.6s;
 }
 
 @keyframes fadeInUp {
@@ -199,9 +186,6 @@
   gap: 1.5rem;
   max-width: 560px;
   width: 100%;
-  /* Estado inicial para la animación */
-  opacity: 0;
-  transform: translateY(30px);
 }
 
 .confirmText {

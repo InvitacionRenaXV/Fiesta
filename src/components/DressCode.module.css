@@ -31,6 +31,9 @@
   background-clip: text;
   line-height: 1.15;
   padding: 0.15em 0.15em 0;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.36),
+    0 0 34px rgba(190, 210, 255, 0.18);
 }
 
 .divider {
@@ -79,7 +82,8 @@
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--silver-dark);
+  color: #e0ebff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.14);
 }
 
 .suit {

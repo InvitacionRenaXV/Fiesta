@@ -31,6 +31,9 @@
   background-clip: text;
   line-height: 1.15;
   margin: 0;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.36),
+    0 0 38px rgba(180, 205, 255, 0.2);
 }
 
 .infoBlock {
@@ -69,14 +72,16 @@
 .infoText {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.1rem;
-  color: var(--text-dark);
+  color: #e8f1ff;
   margin: 0;
   line-height: 1.5;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.16);
 }
 
 .infoText strong {
-  color: var(--silver-mid);
-  font-weight: 500;
+  color: #f5fbff;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.18);
 }
 
 .contactLabel {
@@ -85,8 +90,9 @@
   font-weight: 500;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--silver-dark);
+  color: #dfe8ff;
   margin: 0;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.14);
 }
 
 .contacts {
@@ -142,14 +148,16 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--silver-mid);
+  color: #eef7ff;
   letter-spacing: 0.05em;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.18);
 }
 
 .cardRole {
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.95rem;
-  color: var(--text-light);
+  color: #f0f6ff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
 }
 
 .waIcon {
@@ -173,12 +181,13 @@
 }
 
 .plazaLink {
-  color: var(--silver-mid);
+  color: #e9f2ff;
   text-decoration: underline;
   text-underline-offset: 3px;
   font-weight: 500;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.16);
 }
 
 .plazaLink:hover {
-  color: var(--silver-light);
+  color: #ffffff;
 }
