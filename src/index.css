@@ -24,6 +24,10 @@
   --text-light: #909090;
 }
 /* src/index.css */
+html {
+  font-size: 110%;
+}
+
 html,
 body {
   overscroll-behavior-x: none;

@@ -32,6 +32,85 @@
 .envelopeZoom {
   transform: scale(1.8);
   opacity: 0;
+  animation: envelopeBlast 0.9s ease-out forwards;
+}
+
+@keyframes envelopeBlast {
+  0% {
+    transform: scale(1) translateY(0) rotateX(0deg);
+    opacity: 1;
+  }
+  40% {
+    transform: scale(1.15) translateY(-10px) rotateX(4deg);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.45) translateY(-30px) rotateX(12deg);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.6) translateY(-55px) rotateX(18deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .overlay {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .envelope {
+    width: 220px;
+    height: 145px;
+    animation: floatEnvelope 5.5s ease-in-out infinite alternate;
+  }
+
+  .flap {
+    height: 50%;
+  }
+
+  .seal {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  .enterText {
+    font-size: 1rem;
+    letter-spacing: 0.4em;
+  }
+
+  .envelopeZoom {
+    animation: envelopeBlastMobile 0.9s ease-out forwards;
+  }
+
+  @keyframes envelopeBlastMobile {
+    0% {
+      transform: scale(1) translateY(0) rotateX(0deg);
+      opacity: 1;
+    }
+    35% {
+      transform: scale(1.12) translateY(-8px) rotateX(3deg);
+      opacity: 1;
+    }
+    65% {
+      transform: scale(1.35) translateY(-24px) rotateX(10deg);
+      opacity: 0.72;
+    }
+    100% {
+      transform: scale(1.45) translateY(-40px) rotateX(15deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes floatEnvelope {
+    0% {
+      transform: translateY(0) rotateX(0deg);
+    }
+    100% {
+      transform: translateY(-6px) rotateX(1deg);
+    }
+  }
 }
 
 .burst {
@@ -167,7 +246,7 @@
 
 .enterText {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.45em;
   text-transform: uppercase;
@@ -205,7 +284,7 @@
 
 .floatNote {
   position: absolute;
-  font-size: 0.69rem;
+  font-size: 0.9rem;
   color: var(--silver-dark);
   opacity: 0;
   animation: noteFloat 3s ease-in-out infinite;

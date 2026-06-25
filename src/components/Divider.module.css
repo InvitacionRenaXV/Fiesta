@@ -10,13 +10,15 @@
 }
 
 @keyframes breathe {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
-    filter: drop-shadow(0 0 2px rgba(255,255,255,0.2));
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
   }
   50% {
     opacity: 1;
-    filter: drop-shadow(0 0 8px rgba(255,255,255,0.7)) drop-shadow(0 0 18px rgba(200,220,255,0.4));
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7))
+      drop-shadow(0 0 18px rgba(200, 220, 255, 0.4));
   }
 }
 
@@ -28,7 +30,7 @@
 
 .ornament {
   color: var(--silver-light);
-  font-size: 0.9rem;
+  font-size: 0.99rem;
 }
 
 /* ── Shooting star divider ── */
@@ -54,7 +56,7 @@
   display: block;
   width: 50px;
   height: 2px;
-  background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.8));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
   border-radius: 2px;
   filter: blur(1px);
 }
@@ -65,21 +67,39 @@
 }
 
 .starHead {
-  font-size: 0.85rem;
+  font-size: 0.935rem;
   color: #fff;
   text-shadow:
-    0 0 6px rgba(255,255,255,1),
-    0 0 14px rgba(200,220,255,0.9),
-    0 0 28px rgba(180,200,255,0.6);
+    0 0 6px rgba(255, 255, 255, 1),
+    0 0 14px rgba(200, 220, 255, 0.9),
+    0 0 28px rgba(180, 200, 255, 0.6);
   line-height: 1;
 }
 
 @keyframes starShoot {
-  0%   { left: -70px;  transform: translateY(0px);   opacity: 0; }
-  8%   { opacity: 1; }
-  25%  { transform: translateY(-8px); }
-  50%  { transform: translateY(-14px); }
-  75%  { transform: translateY(-8px); }
-  85%  { opacity: 1; }
-  100% { left: 100%;   transform: translateY(0px);   opacity: 0; }
+  0% {
+    left: -70px;
+    transform: translateY(0px);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(-8px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+  75% {
+    transform: translateY(-8px);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    transform: translateY(0px);
+    opacity: 0;
+  }
 }

@@ -15,7 +15,7 @@
 
 .eyebrow {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.77rem;
   font-weight: 600;
   letter-spacing: 0.4em;
   text-transform: uppercase;
@@ -24,7 +24,7 @@
 
 .heading {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(3rem, 9vw, 4.5rem);
+  font-size: clamp(3.3rem, 9.9vw, 4.95rem);
   background: linear-gradient(135deg, #b0b0b0 0%, #fff 40%, #d0d0d0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -52,7 +52,7 @@
 
 .ornament {
   color: var(--silver-dark);
-  font-size: 0.9rem;
+  font-size: 0.99rem;
 }
 
 .outfits {
@@ -78,7 +78,7 @@
 
 .outfitLabel {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.715rem;
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -116,7 +116,7 @@
 .forbiddenLabel {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--text-mid);
 }
 
@@ -135,7 +135,7 @@
   border: 1px solid #666;
   color: #aaa;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.792rem;
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -143,14 +143,14 @@
 }
 
 .cross {
-  font-size: 0.65rem;
+  font-size: 0.776rem;
   font-weight: 700;
 }
 
 .suggestLabel {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--text-mid);
 }
 
@@ -181,7 +181,7 @@
 
 .swatchName {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.62rem;
+  font-size: 0.682rem;
   color: var(--text-mid);
   font-weight: 400;
   letter-spacing: 0.05em;

@@ -15,7 +15,7 @@
 
 .eyebrow {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.77rem;
   font-weight: 600;
   letter-spacing: 0.4em;
   text-transform: uppercase;
@@ -71,7 +71,7 @@
 
 .infoText {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
+  font-size: 1.21rem;
   color: #e8f1ff;
   margin: 0;
   line-height: 1.5;
@@ -86,7 +86,7 @@
 
 .contactLabel {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.792srem;
   font-weight: 500;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -146,7 +146,7 @@
 
 .cardName {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.97rem;
   font-weight: 600;
   color: #eef7ff;
   letter-spacing: 0.05em;
@@ -155,7 +155,7 @@
 
 .cardRole {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: #f0f6ff;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
 }
@@ -175,7 +175,7 @@
 
 .phone {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-mid);
 }

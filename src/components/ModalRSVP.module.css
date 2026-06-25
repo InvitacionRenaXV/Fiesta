@@ -56,7 +56,7 @@
   position: absolute;
   right: 20px;
   top: 15px;
-  font-size: 1.5rem;
+  font-size: 1.65rem;
   cursor: pointer;
   color: var(--silver-dark);
   transition: color 0.3s ease;
@@ -76,7 +76,7 @@
 /* --- TEXTOS DEL MODAL --- */
 .heading {
   font-family: 'Great Vibes', cursive;
-  font-size: 3rem;
+  font-size: 4rem;
   color: var(--silver-light);
   margin: 0;
   text-align: center;
@@ -84,7 +84,7 @@
 
 .cardSub {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   color: var(--text-mid);
   font-style: italic;
   margin: 0 0 0.5rem 0;
@@ -107,7 +107,7 @@
   border: 1px solid var(--surface-mid);
   color: var(--white);
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   border-radius: 4px;
   box-sizing: border-box;
   outline: none;
@@ -131,7 +131,7 @@
   width: 100%;
   font-family: 'Montserrat', sans-serif;
   color: var(--text-mid);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -210,7 +210,7 @@
 
 .confirmText {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--silver-light);
   font-style: italic;
   line-height: 1.6;
@@ -226,7 +226,7 @@
   border: 1px solid var(--silver-dark);
   color: var(--silver-mid);
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
