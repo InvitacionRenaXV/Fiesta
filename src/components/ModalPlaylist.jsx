@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import styles from './ModalRSVP.module.css';
+import styles from './ModalConfirmacion.module.css';
 
 export default function ModalPlaylist({ isPlaylistOpen, setIsPlaylistOpen }) {
   const [localOpen, setLocalOpen] = useState(false);
@@ -11,6 +11,9 @@ export default function ModalPlaylist({ isPlaylistOpen, setIsPlaylistOpen }) {
     cancion: '',
   });
   const previousBodyOverflow = useRef('');
+  const previousBodyPosition = useRef('');
+  const previousBodyTop = useRef('');
+  const scrollYRef = useRef(0);
 
   const isControlled =
     typeof isPlaylistOpen === 'boolean' && typeof setIsPlaylistOpen === 'function';
@@ -32,6 +35,12 @@ export default function ModalPlaylist({ isPlaylistOpen, setIsPlaylistOpen }) {
 
     window.addEventListener('popstate', handlePopState);
     previousBodyOverflow.current = document.body.style.overflow;
+    previousBodyPosition.current = document.body.style.position;
+    previousBodyTop.current = document.body.style.top;
+    scrollYRef.current = window.scrollY || document.documentElement.scrollTop || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollYRef.current}px`;
+    document.body.style.width = '100%';
     document.body.style.overflow = 'hidden';
 
     return () => {
@@ -40,7 +49,13 @@ export default function ModalPlaylist({ isPlaylistOpen, setIsPlaylistOpen }) {
       if (window.history.state?.modalOpen) {
         window.history.back();
       }
+      document.body.style.position = previousBodyPosition.current || '';
+      document.body.style.top = previousBodyTop.current || '';
+      document.body.style.width = '';
       document.body.style.overflow = previousBodyOverflow.current || '';
+      if (scrollYRef.current) {
+        window.scrollTo(0, scrollYRef.current);
+      }
     };
   }, [isOpen]);
 

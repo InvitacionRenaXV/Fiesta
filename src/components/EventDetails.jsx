@@ -3,11 +3,17 @@ import styles from './EventDetails.module.css';
 import CalendarIcon from '../assets/CalendarIcon';
 import LocationIcon from '../assets/LocationIcon';
 import RSVPIcon from '../assets/RSVPIcon';
-import ModalRSVP from './ModalRSVP';
+import ModalConfirmacion from './ModalConfirmacion';
 import { ShootingStarDivider } from './Divider';
 import { handleCalendar } from '../utils/handleCalendar';
 
-export default function EventDetails({ isTeens, isConfirmationOpen, setIsConfirmationOpen }) {
+export default function EventDetails({
+  isTeens,
+  isConfirmationOpen,
+  setIsConfirmationOpen,
+  familia,
+  miembros,
+}) {
   return (
     <section id="evento" className={styles.section}>
       <div className={styles.inner}>
@@ -23,7 +29,7 @@ export default function EventDetails({ isTeens, isConfirmationOpen, setIsConfirm
               <CalendarIcon />
             </span>
             <h3 className={styles.cardTitle}>Fecha &amp; Hora</h3>
-            <p className={styles.cardMain}>Sábado 5 de Septiembre, 2026</p>
+            <p className={styles.cardMain}>Sábado 5 de Septiembre 2026</p>
             <p className={styles.cardSub}>20:00 hs. a 04:00 hs.</p>
             <button onClick={handleCalendar} className={styles.mapBtn}>
               Agregar al calendario
@@ -61,10 +67,12 @@ export default function EventDetails({ isTeens, isConfirmationOpen, setIsConfirm
             <strong>20 de agosto</strong>, para poder organizar todo de la mejor manera y
             asegurarnos de que tengas una experiencia increíble
           </p>
-          <ModalRSVP
+          <ModalConfirmacion
             isTeens={isTeens}
             isConfirmationOpen={isConfirmationOpen}
             setIsConfirmationOpen={setIsConfirmationOpen}
+            familia={familia}
+            miembros={miembros}
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import ModalRSVP from './ModalRSVP';
+import ModalConfirmacion from './ModalConfirmacion';
 import styles from './Playlist.module.css';
 import ModalPlaylist from './ModalPlaylist';
 const NOTES = [

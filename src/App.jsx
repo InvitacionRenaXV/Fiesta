@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import Hero from './components/Hero';
 import Countdown from './components/Countdown';
 import EventDetails from './components/EventDetails';
@@ -12,9 +12,13 @@ import Gallery from './components/Gallery';
 import Reveal from './components/Reveal';
 import Preloader from './components/Preloader';
 import appStyles from './App.module.css';
+import families from './const/families.json';
 
 export default function App() {
   const isTeens = new URLSearchParams(window.location.search).has('teens');
+
+  const [familyName, setFamilyName] = useState(null);
+  const [familyMembers, setFamilyMembers] = useState(null);
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [isPlaylistOpen, setIsPlaylistOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +48,17 @@ export default function App() {
     }
   }, []);
 
+  useEffect(() => {
+    const familyParam = new URLSearchParams(window.location.search).get('family');
+
+    const familiaExiste = families.find((item) => item.hasOwnProperty(familyParam));
+
+    if (familiaExiste) {
+      setFamilyName(familyParam);
+      setFamilyMembers(familiaExiste[familyParam]);
+    }
+  }, []);
+
   return (
     <>
       {showPreloader && <Preloader fadeOut={!isLoading} />}
@@ -56,6 +71,8 @@ export default function App() {
       <Reveal>
         <EventDetails
           isTeens={isTeens}
+          familia={familyName}
+          miembros={familyMembers}
           isConfirmationOpen={isConfirmationOpen}
           setIsConfirmationOpen={setIsConfirmationOpen}
         />

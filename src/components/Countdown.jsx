@@ -43,9 +43,12 @@ export default function Countdown() {
         </div>
         <p className={styles.sub}>para la noche más especial</p>
       </div>{' '}
-      <span className={styles.miniDisco} aria-hidden="true">
-        🪩
-      </span>
+      <img
+        className={styles.miniDisco}
+        src={`${import.meta.env.BASE_URL}apple-touch-icon.png`}
+        alt=""
+        aria-hidden="true"
+      />
     </section>
   );
 }

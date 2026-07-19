@@ -1,9 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import styles from './ModalRSVP.module.css';
+import families from '../const/families.json';
+import styles from './ModalConfirmacion.module.css';
 
-export default function ModalRSVP({ isTeens, isConfirmationOpen, setIsConfirmationOpen }) {
+export default function ModalConfirmacion({
+  isTeens,
+  isConfirmationOpen,
+  setIsConfirmationOpen,
+  familia,
+  miembros,
+}) {
   const [localOpen, setLocalOpen] = useState(false);
+  const [seleccionados, setSeleccionados] = useState({});
   const [enviado, setEnviado] = useState(false);
   const [enviando, setEnviando] = useState(false);
   const [formData, setFormData] = useState({
@@ -17,6 +25,9 @@ export default function ModalRSVP({ isTeens, isConfirmationOpen, setIsConfirmati
     mensaje: '',
   });
   const previousBodyOverflow = useRef('');
+  const previousBodyPosition = useRef('');
+  const previousBodyTop = useRef('');
+  const scrollYRef = useRef(0);
 
   const isControlled =
     typeof isConfirmationOpen === 'boolean' && typeof setIsConfirmationOpen === 'function';
@@ -26,8 +37,21 @@ export default function ModalRSVP({ isTeens, isConfirmationOpen, setIsConfirmati
     else setLocalOpen(v);
   };
 
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setSeleccionados((prev) => ({
+      ...prev,
+      [name]: checked,
+    }));
+  };
   useEffect(() => {
     if (!isOpen) return;
+
+    if (Array.isArray(miembros)) {
+      setSeleccionados(Object.fromEntries(miembros.map((miembro) => [miembro, true])));
+    } else {
+      setSeleccionados({});
+    }
 
     // Empujamos un estado al historial para que el botón "Atrás" funcione
     window.history.pushState({ modalOpen: true }, '');
@@ -38,6 +62,12 @@ export default function ModalRSVP({ isTeens, isConfirmationOpen, setIsConfirmati
 
     window.addEventListener('popstate', handlePopState);
     previousBodyOverflow.current = document.body.style.overflow;
+    previousBodyPosition.current = document.body.style.position;
+    previousBodyTop.current = document.body.style.top;
+    scrollYRef.current = window.scrollY || document.documentElement.scrollTop || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollYRef.current}px`;
+    document.body.style.width = '100%';
     document.body.style.overflow = 'hidden';
 
     return () => {
@@ -46,7 +76,13 @@ export default function ModalRSVP({ isTeens, isConfirmationOpen, setIsConfirmati
       if (window.history.state?.modalOpen) {
         window.history.back();
       }
+      document.body.style.position = previousBodyPosition.current || '';
+      document.body.style.top = previousBodyTop.current || '';
+      document.body.style.width = '';
       document.body.style.overflow = previousBodyOverflow.current || '';
+      if (scrollYRef.current) {
+        window.scrollTo(0, scrollYRef.current);
+      }
     };
   }, [isOpen]); // changeOpen es estable
 
@@ -58,33 +94,66 @@ export default function ModalRSVP({ isTeens, isConfirmationOpen, setIsConfirmati
   };
 
   const handleFocus = (e) => {
-    // Un pequeño delay para permitir que el teclado empiece a aparecer en mobile
     setTimeout(() => {
       e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 300);
   };
 
+  const resetFormState = () => {
+    setFormData({
+      nombre: '',
+      cedula: '',
+      nombreAdulto: '',
+      asistencia: '',
+      restricciones: '',
+      restriccionesDetalle: '',
+      telefonoAdulto: '',
+      mensaje: '',
+    });
+    setSeleccionados({});
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setEnviando(true);
-    const googleFormData = new FormData();
-    googleFormData.append('entry.316980587', formData.nombre);
-    googleFormData.append('entry.947593337', formData.cedula);
-    googleFormData.append('entry.1733511234', formData.nombreAdulto);
-    googleFormData.append('entry.198903852', formData.telefonoAdulto);
-    googleFormData.append('entry.34795512', formData.asistencia);
 
-    if (formData.restricciones === 'Otro') {
+    const currentValues = {
+      ...formData,
+      seleccionados: Object.entries(seleccionados)
+        .filter(([, checked]) => checked)
+        .map(([name]) => name),
+    };
+
+    const googleFormData = new FormData();
+    const payload = {
+      nombre: currentValues.nombre || '',
+      cedula: currentValues.cedula || '',
+      nombreAdulto: currentValues.nombreAdulto || '',
+      telefonoAdulto: currentValues.telefonoAdulto || '',
+      asistencia: currentValues.asistencia || '',
+      restricciones: currentValues.restricciones || '',
+      restriccionesDetalle: currentValues.restriccionesDetalle || '',
+      mensaje: currentValues.mensaje || '',
+      seleccionados: currentValues.seleccionados,
+    };
+
+    googleFormData.append('entry.316980587', currentValues.nombre || '');
+    googleFormData.append('entry.947593337', currentValues.cedula || '');
+    googleFormData.append('entry.1733511234', currentValues.nombreAdulto || '');
+    googleFormData.append('entry.198903852', currentValues.telefonoAdulto || '');
+    googleFormData.append('entry.591682182', currentValues.seleccionados.join(', ') || '');
+    googleFormData.append('entry.1265185030', currentValues.mensaje || '');
+    googleFormData.append('entry.34795512', currentValues.asistencia || '');
+
+    if (currentValues.restricciones === 'Otro') {
       googleFormData.append('entry.1002307023', '__other_option__');
       googleFormData.append(
         'entry.1002307023.other_option_response',
-        formData.restriccionesDetalle
+        currentValues.restriccionesDetalle || ''
       );
     } else {
-      googleFormData.append('entry.1002307023', formData.restricciones);
+      googleFormData.append('entry.1002307023', currentValues.restricciones || '');
     }
-
-    googleFormData.append('entry.591682182', formData.mensaje);
 
     const rsvpUrl =
       'https://docs.google.com/forms/d/e/1FAIpQLSfg6_keVDCfWZip02B3gGN0HfTDs6bYqV37GmsjWJjusBCrdg/formResponse';
@@ -100,16 +169,7 @@ export default function ModalRSVP({ isTeens, isConfirmationOpen, setIsConfirmati
         setTimeout(() => {
           changeOpen(false);
           setEnviado(false);
-          setFormData({
-            nombre: '',
-            cedula: '',
-            nombreAdulto: '',
-            asistencia: '',
-            restricciones: '',
-            restriccionesDetalle: '',
-            telefonoAdulto: '',
-            mensaje: '',
-          });
+          resetFormState();
         }, 3000);
       })
       .catch((err) => {
@@ -203,6 +263,26 @@ export default function ModalRSVP({ isTeens, isConfirmationOpen, setIsConfirmati
                         className={styles.modalInput}
                       />
                     </div>
+
+                    {familia && miembros && (
+                      <div className={styles.radioSection}>
+                        <p className={styles.radioLabel}>Miembros de la familia:</p>
+                        <div className={styles.radioGroup}>
+                          {miembros.map((miembro, index) => (
+                            <label key={index} className={styles.radioOption}>
+                              <input
+                                type="checkbox"
+                                name={miembro}
+                                checked={!!seleccionados[miembro]}
+                                onChange={handleCheckboxChange}
+                              />
+                              {miembro}
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
                     {isTeens && (
                       <>
                         <div>

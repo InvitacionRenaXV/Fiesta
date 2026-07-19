@@ -20,7 +20,7 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={styles.heroBg} aria-hidden="true">
-        <img src={exteriores} className={styles.bgImage} alt="" fetchPriority="high" />
+        <img src={exteriores} className={styles.bgImage} alt="" />
       </div>
 
       <div className={styles.sparksLayer} aria-hidden="true">
