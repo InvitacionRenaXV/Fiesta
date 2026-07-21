@@ -8972,7 +8972,7 @@ function ch({
                                 children: [
                                   d.jsx('p', {
                                     className: A.radioLabel,
-                                    children: '¿Quienes vienen?:',
+                                    children: '¿Quienes vienen?',
                                   }),
                                   d.jsx('div', {
                                     className: A.radioGroup,
