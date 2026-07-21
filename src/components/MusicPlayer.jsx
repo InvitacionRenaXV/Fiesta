@@ -36,11 +36,15 @@ export default function MusicPlayer({ isTeens, isConfirmationlOpen }) {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    const audio = new Audio('public/music.mp3');
+    const audioUrl = 'https://invitacionrenaxv.github.io/fiesta/music.mp3';
+    const audio = new Audio(audioUrl);
     audio.loop = true;
     audio.volume = 0.4;
     audio.addEventListener('timeupdate', () => {
       if (audio.duration) setProgress(audio.currentTime / audio.duration);
+    });
+    audio.addEventListener('error', () => {
+      console.error('No se pudo cargar la música:', audioUrl);
     });
     audioRef.current = audio;
     return () => audio.pause();
