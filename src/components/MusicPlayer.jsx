@@ -36,7 +36,7 @@ export default function MusicPlayer({ isTeens, isConfirmationlOpen }) {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    const audio = new Audio('/invitacion-rena/music.mp3');
+    const audio = new Audio('/fiesta/audio.mp3');
     audio.loop = true;
     audio.volume = 0.4;
     audio.addEventListener('timeupdate', () => {
